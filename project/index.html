@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quest - Gamificação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <h1>Daily Quest</h1>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-screen="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-screen="missions">
+                <span class="nav-icon">📋</span>
+                <span>Missões</span>
+            </button>
+            <button class="nav-item" data-screen="profile">
+                <span class="nav-icon">👤</span>
+                <span>Perfil</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="logoutBtn">
+                <span>🚪</span>
+                <span>Sair</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <h2 id="screenTitle">Dashboard</h2>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">JD</div>
+                    <div class="user-details">
+                        <p id="userName">João da Silva</p>
+                        <small id="userLevel">Nível 12</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- SCREENS CONTAINER -->
+        <div class="screens-container">
+
+            <!-- SCREEN 1: DASHBOARD -->
+            <section id="dashboard" class="screen active">
+                <div class="dashboard-content">
+                    <!-- User Card -->
+                    <div class="user-card">
+                        <div class="user-card-header">
+                            <div class="user-card-avatar" id="userCardAvatar">JD</div>
+                            <div class="user-card-info">
+                                <h3 id="userCardName">João da Silva</h3>
+                                <p id="userCardLevel">Nível 12 - 340/500 XP</p>
+                            </div>
+                            <div class="user-card-date" id="currentDate"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-value" id="statSequence">42</div>
+                            <div class="stat-label">Sequência Atual</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✓</div>
+                            <div class="stat-value" id="statCompletion">78%</div>
+                            <div class="stat-label">Taxa de Conclusão</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-value" id="statPoints">1,250</div>
+                            <div class="stat-label">Pontos Acumulados</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👑</div>
+                            <div class="stat-value" id="statConquests">15</div>
+                            <div class="stat-label">Conquistas</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Ações Rápidas</h3>
+                        <button class="btn-action" id="addMissionBtn">
+                            <span>➕</span>
+                            <span>Adicionar Missão</span>
+                        </button>
+                        <button class="btn-action" id="viewAllBtn">
+                            <span>📊</span>
+                            <span>Ver Todas as Missões</span>
+                        </button>
+                    </div>
+
+                    <!-- Recent Missions -->
+                    <div class="recent-missions">
+                        <h3>Missões Recentes</h3>
+                        <div id="recentMissionsContainer" class="missions-list">
+                            <div class="empty-state">
+                                <p>Nenhuma missão adicionada ainda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 2: MISSIONS -->
+            <section id="missions" class="screen">
+                <div class="missions-content">
+                    <!-- Add Mission Form -->
+                    <div class="form-card">
+                        <h3>Adicionar Nova Missão</h3>
+                        <form id="missionForm">
+                            <div class="form-group">
+                                <label for="missionTitle">Título da Missão *</label>
+                                <input type="text" id="missionTitle" placeholder="Ex: Exercitar por 30 minutos" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="missionDescription">Descrição *</label>
+                                <textarea id="missionDescription" placeholder="Descreva a missão..." required></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="missionCategory">Categoria *</label>
+                                    <select id="missionCategory" required>
+                                        <option value="">Selecione uma categoria</option>
+                                        <option value="Saúde">🏃 Saúde</option>
+                                        <option value="Leitura">📚 Leitura</option>
+                                        <option value="Trabalho">💼 Trabalho</option>
+                                        <option value="Lazer">🎮 Lazer</option>
+                                        <option value="Meditação">🧘 Meditação</option>
+                                        <option value="Estudo">📖 Estudo</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="missionReward">Pontos de Recompensa *</label>
+                                    <input type="number" id="missionReward" placeholder="Ex: 25" min="1" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="missionStatus">Status *</label>
+                                    <select id="missionStatus" required>
+                                        <option value="Pendente">Pendente</option>
+                                        <option value="Concluído">Concluído</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="missionTime">Hora de Conclusão</label>
+                                    <input type="time" id="missionTime">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary">Adicionar Missão</button>
+                        </form>
+                    </div>
+
+                    <!-- Missions List -->
+                    <div class="missions-list-card">
+                        <h3>Todas as Missões</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">Todas</button>
+                            <button class="filter-btn" data-filter="Pendente">Pendentes</button>
+                            <button class="filter-btn" data-filter="Concluído">Concluídas</button>
+                        </div>
+                        <div id="allMissionsContainer" class="missions-list">
+                            <div class="empty-state">
+                                <p>Nenhuma missão adicionada ainda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 3: PROFILE -->
+            <section id="profile" class="screen">
+                <div class="profile-content">
+                    <!-- Profile Card -->
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar" id="profileAvatar">JD</div>
+                            <div class="profile-info">
+                                <h2 id="profileName">João da Silva</h2>
+                                <p id="profileEmail">joao@example.com</p>
+                                <p id="profileLevel">Nível 12 - 340/500 XP</p>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <span class="stat-label">Total de Missões</span>
+                                <span class="stat-value" id="profileTotalMissions">0</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-label">Missões Concluídas</span>
+                                <span class="stat-value" id="profileCompletedMissions">0</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-label">Pontos Totais</span>
+                                <span class="stat-value" id="profileTotalPoints">0</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-label">Taxa de Conclusão</span>
+                                <span class="stat-value" id="profileCompletionRate">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="achievements-card">
+                        <h3>Conquistas</h3>
+                        <div class="achievements-grid" id="achievementsContainer">
+                            <div class="achievement">
+                                <span class="achievement-icon">🏆</span>
+                                <p>Primeira Missão</p>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">🔥</span>
+                                <p>7 Dias Seguidos</p>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">⭐</span>
+                                <p>1000 Pontos</p>
+                            </div>
+                            <div class="achievement">
+                                <span class="achievement-icon">👑</span>
+                                <p>Mestre da Gamificação</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div class="settings-card">
+                        <h3>Configurações</h3>
+                        <div class="settings-group">
+                            <label>
+                                <input type="checkbox" id="notificationsToggle" checked>
+                                <span>Ativar Notificações</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="soundToggle" checked>
+                                <span>Ativar Som</span>
+                            </label>
+                        </div>
+                        <button class="btn-danger" id="clearDataBtn">Limpar Dados Locais</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- MODAL FOR MISSION DETAILS -->
+    <div id="missionModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalMissionDetails"></div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="modalCloseBtn">Fechar</button>
+                <button class="btn-danger" id="modalDeleteBtn">Deletar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    <div id="successMessage" class="success-message"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
