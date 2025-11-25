@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <div class="login-card">
-            <h2>Welcome Back</h2>
-            <p>Sign in to your account</p>
+            <h2>Bem-vindo de volta</h2>
+            <p>Faça login na sua conta</p>
 
             <form id="loginForm">
                 <div class="input-group">
-                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="email" id="email" placeholder="Endereço de Email" required>
                 </div>
                 <div class="input-group">
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" placeholder="Senha" required>
                     <span class="password-toggle" onclick="togglePasswordVisibility()">
                         <i class="fas fa-eye"></i>
                     </span>
@@ -27,20 +29,21 @@
 
                 <div class="options-group">
                     <label class="checkbox-container">
-                        Remember me
+                        Lembrar-me
                         <input type="checkbox" id="rememberMe">
                         <span class="checkmark"></span>
                     </label>
-                    <a href="forgot.html" class="forgot-password">Forgot password?</a>
+                    <a href="forgot.html" class="forgot-password">Esqueceu a senha?</a>
                 </div>
 
-                <button type="submit" class="sign-in-btn">Sign In</button>
+                <button type="submit" id="sign-in-btn" class="sign-in-btn">Entrar</button>
             </form>
 
-            <p class="signup-link">Don't have an account? <a href="signup.html">Sign up</a></p>
+            <p class="signup-link">Não tem uma conta? <a href="signup.html">Cadastre-se</a></p>
         </div>
     </div>
-    
+
     <script src="./script.js"></script>
 </body>
+
 </html>

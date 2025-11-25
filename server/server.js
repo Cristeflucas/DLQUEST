@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 
 // 1. Configuração do PostgreSQL (use as credenciais fornecidas anteriormente)
 const pool = new Pool({
-    user: 'postgres',
+    user: '',
     host: 'localhost',
     database: 'gameficacao_db',
-    password: '1234', 
+    password: 'root', 
     port: 5432,
 });
 
